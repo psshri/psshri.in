@@ -1,0 +1,68 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-psshri-in-ingress
+  namespace: frontend
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "psshri-in"
+    # networking.gke.io/enable-ssl-redirect: "true"
+    # networking.gke.io/https-redirect: "true"
+    # kubernetes.io/ingress.allow-http: "false"
+    networking.gke.io/v1beta1.FrontendConfig: frontend-config
+spec:
+  tls:
+  - hosts:
+      - psshri.in
+    secretName: tls-psshri-in
+  - hosts:
+      - blog.psshri.in
+    secretName: tls-blog-psshri-in
+  - hosts:
+      - www.psshri.in
+    secretName: tls-www-psshri-in
+  ingressClassName: gce
+  # defaultBackend:
+  #   service:
+  #     name: frontend-psshri-in-service
+  #     port:
+  #       number: 3000
+  rules:
+  - host: "www.psshri.in"
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-psshri-in-service
+            port:
+              number: 3000
+  - host: "psshri.in"
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-psshri-in-service
+            port:
+              number: 3000
+  - host: "blog.psshri.in"
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-psshri-in-service
+            port:
+              number: 3000
+      # - path: /bar
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: frontend-psshri-in-service
+      #       port:
+      #         number: 3000
+    

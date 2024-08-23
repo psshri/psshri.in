@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-psshri-in
+  namespace: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-psshri-in
+  template:
+    metadata:
+      labels:
+        app: frontend-psshri-in
+    spec:
+      containers:
+        - name: frontend-psshri-in
+          image: psshri/psshri-in:frontend-v1
+          ports:
+            - containerPort: 3000

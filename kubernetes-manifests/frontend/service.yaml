@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-psshri-in-service
+  namespace: frontend
+  # annotations:
+    # cloud.google.com/neg: '{"ingress": true}'
+spec:
+  # type: ClusterIP
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: frontend-psshri-in
