@@ -1,4 +1,4 @@
-FROM node:18-alpine as build
+FROM node:18-alpine as module-install-build-stage
 
 WORKDIR /app
 
@@ -8,10 +8,15 @@ COPY package.json /app/
 
 RUN npm install 
 
-FROM node:18-alpine as main
+RUN npm run build
 
-COPY --from=build /app /
+FROM node:18-alpine
+
+COPY --from=module-install-build-stage /app/build /app/build
+RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+
+CMD ["serve", "-s", "/app/build"]
