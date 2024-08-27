@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: frontend-psshri-in
-          image: psshri/psshri-in:frontend-v1
-          image: frontend-psshri-in:v1
-          imagePullPolicy: Never
+          image: psshri/psshri-in:frontend-v3
+          # image: frontend-psshri-in:v1
+          # imagePullPolicy: Never
           ports:
             - containerPort: 3000
