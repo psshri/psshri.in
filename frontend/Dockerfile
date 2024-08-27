@@ -1,11 +1,11 @@
 # module install
-FROM node:18-alpine as module-install-stage
+FROM node:18-alpine AS module-install-stage
 WORKDIR /app
 COPY package.json /app/
 RUN npm install 
 
 # build
-FROM node:18-alpine as build-stage
+FROM node:18-alpine AS build-stage
 COPY --from=module-install-stage /app/node_modules/ /app/node_modules
 WORKDIR /app
 COPY public/ /app/public

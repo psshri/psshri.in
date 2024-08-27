@@ -20,9 +20,9 @@ $ gcloud compute ssh --zone "us-central1-a" "gke-psshri-in-primary-node-pool-14f
 # docker commands
 dockerhub URL: https://hub.docker.com/r/psshri/psshri-in
 ```
-$ docker build -t frontend-psshri-in:v1 .
-$ docker tag frontend-psshri-in:v3 psshri/psshri-in:frontend-v3
-$ docker push psshri/psshri-in:frontend-v3
+$ docker build -t frontend-psshri-in:v4 .
+$ docker tag frontend-psshri-in:v4 psshri/psshri-in:frontend-v4
+$ docker push psshri/psshri-in:frontend-v4
 $ docker pull psshri/psshri-in:frontend-v1
 ```
 
