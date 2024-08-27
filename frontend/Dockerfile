@@ -1,4 +1,4 @@
-FROM node:18-alpine as build
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -6,10 +6,7 @@ COPY public/ /app/public
 COPY src/ /app/src
 COPY package.json /app/
 
-RUN npm install
-
-FROM node:18-alpine as main
-COPY --from=build /app /app
+RUN npm install 
 
 EXPOSE 3000
 
