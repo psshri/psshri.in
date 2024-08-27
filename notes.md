@@ -44,8 +44,8 @@ $ minikube profile list
 below commands sets minikube to use local docker images
 ```
 $ eval $(minikube docker-env)
-$ docker build -t todo-frontend:v2
-$ minikube service frontend --url (use this command to access a nodeport service)
+$ docker build -t frontend-psshri-in:v2 .
+$ minikube service frontend-psshri-in-service -n frontend --url (use this command to access a nodeport service)
 ```
 
 ```
