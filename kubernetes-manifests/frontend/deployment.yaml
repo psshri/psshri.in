@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: frontend-psshri-in
-          image: psshri/psshri-in:frontend-v1
+          image: psshri/psshri-in:frontend-v2
           ports:
             - containerPort: 3000

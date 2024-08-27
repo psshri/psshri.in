@@ -33,11 +33,28 @@ $ npx create-react-app frontend
 ```
 
 # minikube
+
+```
+$ minikube start
+$ minikube stop
+$ minikube delete --all
+$ minikube profile list
+```
+
+below commands sets minikube to use local docker images
+```
+$ eval $(minikube docker-env)
+$ docker build -t todo-frontend:v2
+$ minikube service frontend --url (use this command to access a nodeport service)
+```
+
 ```
 $ minikube update-context
 $ minikube start
 $ minikube profile list
 ```
+
+# follow the steps below to run the image locally on minikube
 
 # K8s cluster config
 Name: psshri-in
@@ -66,16 +83,6 @@ I can use the following subnets for future use cases, each of them have 4,096 IP
 192.168.128.0/20
 192.168.144.0/20
 
-# Run the following command to install nginx ingress controller
-```bash
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/cloud/deploy.yaml
-```
-
-helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace
-
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace
 
 # To explore further
 - Kube State Metrics, cAdvisor, Kubelet Metrics
@@ -95,6 +102,8 @@ https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr?authuse
 
 # learnings
 - if service of type loadbalancer is used, then publicip:port will give me my website
+- if you have your workloads running on a nodepool and then you create another nodepool (the secondary one), and then if you delete the primary node pool, then the workloads will automatically be transferred to the secondary node pool.
+- if the image size is too high, it will take a lot of time for the pods to come up. the initial react app was 1GB in size and it took 13 mins for the pod to come up
 
 # lets encrypt certificate via certbot
 
